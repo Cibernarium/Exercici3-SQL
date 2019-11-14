@@ -1,0 +1,50 @@
+Ex.1
+
+SELECT COUNT(*) 
+FROM usairlineflights2.flights;
+
+Ex.2
+
+SELECT Origin, AVG(ArrDelay), AVG(DepDelay)
+FROM flights
+GROUP BY Origin
+ORDER BY Origin;
+
+Ex.3
+
+SELECT Origin, colYear, colMonth, ArrDelay
+FROM flights
+ORDER BY Origin, colYear, colMonth, ArrDelay ASC; 
+
+Ex.4
+
+SELECT City,colYear,colMonth,ArrDelay
+FROM flights
+LEFT JOIN usairports ON flights.Origin = usairports.IATA
+ORDER BY City, colyear ASC;
+
+Ex.5
+
+SELECT UniqueCarrier, colYear, colMonth, AVG(Arrdelay) , sum(Cancelled) AS sumTotal
+FROM flights
+GROUP BY UniqueCarrier, colYear, colMonth
+ORDER BY sumTotal DESC;
+
+Ex.6
+
+SELECT  Tailnum , SUM(Distance) AS Totaldistance
+FROM flights
+WHERE TailNum!=""
+GROUP BY TailNum
+ORDER BY Totaldistance DESC
+LIMIT 10;
+
+EX.7
+
+SELECT UniqueCarrier , AVG(ArrDelay) AS avgDelay
+FROM flights
+GROUP BY UniqueCarrier
+HAVING avgDelay>=10
+ORDER BY avgDelay DESC;
+
+
